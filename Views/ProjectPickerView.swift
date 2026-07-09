@@ -32,8 +32,6 @@ struct ProjectPickerView: View {
         }
     }
 
-    // MARK: Single shared container (one background for everything)
-
     private var selectorBox: some View {
         VStack(alignment: .leading, spacing: 8) {
             header
@@ -66,7 +64,7 @@ struct ProjectPickerView: View {
         )
     }
 
-    // MARK: Header row (always visible, toggles the list)
+    // MARK: Header row
 
     private var header: some View {
         Button {
@@ -89,7 +87,7 @@ struct ProjectPickerView: View {
         .buttonStyle(.plain)
     }
 
-    // MARK: List content (no background of its own — lives inside selectorBox)
+    // MARK: List content
 
     private var listContent: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -149,7 +147,7 @@ struct ProjectPickerView: View {
         }
     }
 
-    // MARK: Naming content (create / rename) — no background of its own
+    // MARK: Naming content
 
     private func namingContent(title: String, confirmTitle: String, onConfirm: @escaping () -> Void) -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -170,8 +168,7 @@ struct ProjectPickerView: View {
         }
     }
 
-    // MARK: Delete confirmation content — no background of its own
-
+    // MARK: Delete confirmation content
     private func deleteContent(_ project: Project) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Delete “\(project.name)”? This also deletes its history.")

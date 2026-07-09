@@ -2,9 +2,7 @@ import Foundation
 
 // MARK: - TimeFormatter
 
-/// Small, dependency-free formatting helpers for displaying durations.
 enum TimeFormatter {
-    /// "HH:MM:SS" — used for the large live timer display.
     static func string(from interval: TimeInterval) -> String {
         let total = Int(interval.rounded(.down))
         let hours = total / 3600
@@ -13,7 +11,6 @@ enum TimeFormatter {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
-    /// "Xh YYm" — used for totals in the statistics list.
     static func hoursMinutesSecondsString(from interval: TimeInterval) -> String {
         let total = Int(interval.rounded(.down))
         let hours = total / 3600

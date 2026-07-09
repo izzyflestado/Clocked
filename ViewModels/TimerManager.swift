@@ -4,19 +4,11 @@ import Combine
 
 // MARK: - TimerManager
 
-/// Owns the single, app-wide active timing session.
-///
-/// This lives outside any view so the timer keeps running even while the
-/// popover is closed (a `MenuBarExtra` tears down its content view when
-/// the window is dismissed). Enforces the "only one project running at a
-/// time" rule.
 @MainActor
 final class TimerManager: ObservableObject {
     static let shared = TimerManager()
 
-    /// The project currently being timed (running or paused), if any.
     @Published private(set) var runningProjectID: PersistentIdentifier?
-    /// Live elapsed time for the current session, updated once per second.
     @Published private(set) var elapsed: TimeInterval = 0
     @Published private(set) var isPaused: Bool = false
 
@@ -26,8 +18,6 @@ final class TimerManager: ObservableObject {
     private var ticker: Timer?
 
     private init() {}
-
-    // MARK: Queries
 
     func isActive(_ project: Project) -> Bool {
         runningProjectID == project.persistentModelID
@@ -41,18 +31,15 @@ final class TimerManager: ObservableObject {
         isActive(project) && isPaused
     }
 
-    /// True if some project (any project) currently has an active session.
     var hasActiveSession: Bool {
         runningProjectID != nil
     }
 
     // MARK: Controls
 
-    /// Starts a fresh session for `project`, or resumes it if it was paused.
-    /// No-ops if a *different* project is already active.
     func start(project: Project) {
         if let running = runningProjectID, running != project.persistentModelID {
-            return // Only one project may run at a time.
+            return
         }
 
         if runningProjectID == nil {
@@ -66,7 +53,6 @@ final class TimerManager: ObservableObject {
         startTicker()
     }
 
-    /// Pauses the active session. The elapsed time is kept and can be resumed.
     func pause() {
         guard hasActiveSession, !isPaused else { return }
         commitElapsedSinceResume()
@@ -74,8 +60,6 @@ final class TimerManager: ObservableObject {
         stopTicker()
     }
 
-    /// Stops the active session for `project`, persisting the accumulated
-    /// duration as a `TimeSession` and resetting the timer to zero.
     func stop(project: Project, context: ModelContext) {
         guard isActive(project) else { return }
 

@@ -57,8 +57,6 @@ struct TimerView: View {
             }
         }
         .onAppear {
-            // Always prefer showing the project that's actually running or
-            // paused, regardless of whatever was last manually selected.
             if let runningID = timerManager.runningProjectID {
                 selection.selectedProjectID = runningID
             } else if selection.selectedProjectID == nil {

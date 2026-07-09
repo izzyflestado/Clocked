@@ -3,8 +3,6 @@ import AppKit
 
 // MARK: - SettingsStore
 
-/// Holds the app's ONLY two customizable values: background color and
-/// text/number color. Persisted to `UserDefaults` as hex strings.
 final class SettingsStore: ObservableObject {
     static let shared = SettingsStore()
 
@@ -15,8 +13,6 @@ final class SettingsStore: ObservableObject {
     @Published var textColor: Color
 
     private init() {
-        // Read directly from UserDefaults since @AppStorage isn't available
-        // until `self` exists.
         let storedBackground = UserDefaults.standard.string(forKey: "backgroundColorHex") ?? "1E1E1E"
         let storedText = UserDefaults.standard.string(forKey: "textColorHex") ?? "FFFFFF"
         self.backgroundColor = Color(hex: storedBackground) ?? .black
@@ -34,7 +30,6 @@ final class SettingsStore: ObservableObject {
     }
 }
 
-// MARK: - Color <-> Hex
 
 extension Color {
     init?(hex: String) {

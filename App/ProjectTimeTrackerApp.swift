@@ -9,11 +9,7 @@ struct ProjectTimeTrackerApp: App {
     @StateObject private var settings = SettingsStore.shared
 
     init() {
-        // Hide the Dock icon and app switcher entry so this behaves as a
-        // pure menu bar utility. (Equivalent to Info.plist's
-        // "Application is agent (UIElement)" key, done in code since this
-        // is a Swift Package Manager build with no Info.plist.)
-        NSApplication.shared.setActivationPolicy(.accessory)
+              NSApplication.shared.setActivationPolicy(.accessory)
     }
 
     var body: some Scene {
@@ -23,8 +19,7 @@ struct ProjectTimeTrackerApp: App {
         } label: {
             Image(systemName: "stopwatch")
         }
-        .menuBarExtraStyle(.window) // Gives popover-like floating behavior.
-        .modelContainer(sharedModelContainer)
+        .menuBarExtraStyle(.window)        .modelContainer(sharedModelContainer)
     }
 
     // MARK: SwiftData
