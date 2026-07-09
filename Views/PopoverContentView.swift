@@ -49,7 +49,7 @@ struct PopoverContentView: View {
                 .padding(.bottom)
             }
         }
-        .frame(width: 320)
+        .frame(width: 310)
         .background(settings.backgroundColor)
         .foregroundColor(settings.textColor)
     }
