@@ -23,8 +23,6 @@ final class Project {
         .blue, .green, .orange, .pink, .purple, .yellow, .teal, .red, .indigo, .mint
     ]
 
-    // Picks a palette color not already used by `existingProjects`.
-    // Falls back to a random palette color if all are taken.
     static func nextAvailableColorHex(existingProjects: [Project]) -> String {
         let usedHexes = Set(existingProjects.compactMap { $0.colorHex })
         let usedColors = Set(defaultPalette.filter {
@@ -41,7 +39,6 @@ final class Project {
         if let colorHex, let custom = Color(hex: colorHex) {
             return custom
         }
-        // Fallback only — should rarely hit this if colorHex is always assigned at creation.
         return Project.defaultPalette.first!
     }
 }

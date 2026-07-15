@@ -2,7 +2,6 @@ import SwiftUI
 import AppKit
 
 // MARK: - CustomColorPicker
-// SV (saturation/brightness) box + hue bar, same width, no NSColorPanel involved.
 
 struct CustomColorPicker: View {
     @Binding var color: Color
