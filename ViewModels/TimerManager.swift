@@ -19,6 +19,8 @@ final class TimerManager: ObservableObject {
 
     private init() {}
 
+    // MARK: Queries
+
     func isActive(_ project: Project) -> Bool {
         runningProjectID == project.persistentModelID
     }
@@ -33,6 +35,10 @@ final class TimerManager: ObservableObject {
 
     var hasActiveSession: Bool {
         runningProjectID != nil
+    }
+
+    var isRunningAnything: Bool {
+        runningProjectID != nil && !isPaused
     }
 
     // MARK: Controls

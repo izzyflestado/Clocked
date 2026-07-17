@@ -9,7 +9,7 @@ struct ProjectTimeTrackerApp: App {
     @StateObject private var settings = SettingsStore.shared
 
     init() {
-              NSApplication.shared.setActivationPolicy(.accessory)
+        NSApplication.shared.setActivationPolicy(.accessory)
     }
 
     var body: some Scene {
@@ -17,9 +17,10 @@ struct ProjectTimeTrackerApp: App {
             PopoverContentView()
                 .environmentObject(settings)
         } label: {
-            Image(systemName: "stopwatch")
+            MenuBarLabel()
         }
-        .menuBarExtraStyle(.window)        .modelContainer(sharedModelContainer)
+        .menuBarExtraStyle(.window)
+        .modelContainer(sharedModelContainer)
     }
 
     // MARK: SwiftData
