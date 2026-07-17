@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 import Charts
 
-// MARK: - Row frame tracking (so the popup can anchor above the tapped row)
+// MARK: - Row frame tracking 
 
 private struct RowFramePreferenceKey: PreferenceKey {
     static var defaultValue: [PersistentIdentifier: CGRect] = [:]
@@ -120,10 +120,6 @@ struct StatisticsView: View {
             }
         }
     }
-    
-    /// Maps a hover point to the project whose slice contains it, based on
-    /// cumulative angle (matches SectorMark's own ordering/inset) and radius
-    /// (must land within the donut ring, not the empty center or outside it).
     private func hitTest(location: CGPoint, in plotRect: CGRect) -> PersistentIdentifier? {
         let center = CGPoint(x: plotRect.midX, y: plotRect.midY)
         let dx = location.x - center.x
