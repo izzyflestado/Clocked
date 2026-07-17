@@ -21,6 +21,7 @@ struct StatisticsView: View {
     @State private var editingProjectID: PersistentIdentifier?
     @State private var tempColor: Color = .white
     @State private var rowFrames: [PersistentIdentifier: CGRect] = [:]
+    @State private var hoveredProjectID: PersistentIdentifier?
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -30,14 +31,8 @@ struct StatisticsView: View {
                         .foregroundColor(settings.textColor.opacity(0.6))
                         .frame(height: 160)
                 } else {
-                    Chart(projects) { project in
-                        SectorMark(
-                            angle: .value("Time", project.totalDuration),
-                            innerRadius: .ratio(0.5)
-                        )
-                        .foregroundStyle(project.displayColor)
-                    }
-                    .frame(height: 160)
+                    pieChart
+                        .frame(height: 160)
 
                     VStack(spacing: 6) {
                         ForEach(projects, id: \.persistentModelID) { project in
@@ -62,6 +57,97 @@ struct StatisticsView: View {
         }
         .coordinateSpace(name: "legend")
         .onPreferenceChange(RowFramePreferenceKey.self) { rowFrames = $0 }
+    }
+
+    // MARK: - Pie chart with hover-to-expand
+
+    private var pieChart: some View {
+        ZStack {
+            Chart(projects) { project in
+                SectorMark(
+                    angle: .value("Time", project.totalDuration),
+                    innerRadius: .ratio(0.5),
+                    outerRadius: .ratio(project.persistentModelID == hoveredProjectID ? 1.08 : 1.0)
+                )
+                .foregroundStyle(project.displayColor)
+                .opacity(hoveredProjectID == nil || project.persistentModelID == hoveredProjectID ? 1.0 : 0.6)
+            }
+            .animation(.easeOut(duration: 0.15), value: hoveredProjectID)
+            .chartOverlay { proxy in
+                GeometryReader { geo in
+                    Rectangle()
+                        .fill(Color.clear)
+                        .contentShape(Rectangle())
+                        .onContinuousHover { phase in
+                            guard let anchor = proxy.plotFrame else {
+                                hoveredProjectID = nil
+                                return
+                            }
+                            let plotRect = geo[anchor]
+                            switch phase {
+                            case .active(let location):
+                                hoveredProjectID = hitTest(location: location, in: plotRect)
+                            case .ended:
+                                hoveredProjectID = nil
+                            }
+                        }
+                }
+            }
+
+            if let hoveredID = hoveredProjectID,
+               let hovered = projects.first(where: { $0.persistentModelID == hoveredID }) {
+                GeometryReader { geo in
+                    let innerDiameter = min(geo.size.width, geo.size.height) * 0.5
+                    let safeWidth = innerDiameter - 16 // padding so text never touches the ring
+
+                    VStack(spacing: 2) {
+                        Text(hovered.name)
+                            .font(.system(size: 12, weight: .semibold))
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
+                            .multilineTextAlignment(.center)
+                        Text(TimeFormatter.hoursMinutesSecondsString(from: hovered.totalDuration))
+                            .font(.system(size: 11))
+                            .foregroundColor(settings.textColor.opacity(0.7))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+                    .foregroundColor(settings.textColor)
+                    .frame(width: max(safeWidth, 0))
+                    .position(x: geo.size.width / 2, y: geo.size.height / 2)
+                }
+                .allowsHitTesting(false)
+            }
+        }
+    }
+    
+    /// Maps a hover point to the project whose slice contains it, based on
+    /// cumulative angle (matches SectorMark's own ordering/inset) and radius
+    /// (must land within the donut ring, not the empty center or outside it).
+    private func hitTest(location: CGPoint, in plotRect: CGRect) -> PersistentIdentifier? {
+        let center = CGPoint(x: plotRect.midX, y: plotRect.midY)
+        let dx = location.x - center.x
+        let dy = location.y - center.y
+        let radius = sqrt(dx * dx + dy * dy)
+
+        let maxRadius = min(plotRect.width, plotRect.height) / 2
+        let innerRadius = maxRadius * 0.5
+        guard radius >= innerRadius, radius <= maxRadius else { return nil }
+
+        var angle = atan2(dx, -dy) * 180 / .pi
+        if angle < 0 { angle += 360 }
+
+        guard totalTime > 0 else { return nil }
+
+        var cumulative: Double = 0
+        for project in projects {
+            let sliceAngle = (project.totalDuration / totalTime) * 360
+            if angle >= cumulative && angle < cumulative + sliceAngle {
+                return project.persistentModelID
+            }
+            cumulative += sliceAngle
+        }
+        return nil
     }
 
     // MARK: - Legend swatch button
@@ -98,7 +184,7 @@ struct StatisticsView: View {
 
     @ViewBuilder
     private func colorEditor(for project: Project) -> some View {
-        let pickerWidth: CGFloat = 130   // must match boxSize above
+        let pickerWidth: CGFloat = 130
         let padding: CGFloat = 10
 
         VStack(spacing: 10) {
@@ -126,9 +212,9 @@ struct StatisticsView: View {
                 .fill(Color(NSColor.windowBackgroundColor))
                 .shadow(radius: 8)
         )
-        .frame(width: pickerWidth + padding * 2)   // <- ties outer width to inner content
+        .frame(width: pickerWidth + padding * 2)
     }
-    
+
     private var totalTime: TimeInterval {
         projects.reduce(0) { $0 + $1.totalDuration }
     }
