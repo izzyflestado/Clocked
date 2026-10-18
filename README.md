@@ -1,4 +1,4 @@
-# Clocked! - Project Time Tracker
+# Clocked - Project Time Tracker
 
 A tiny macOS menu bar app that tracks how much time you spend on different projects. 
 
