@@ -7,7 +7,11 @@ No accounts. No streaks. No notifications. No "productivity tips." Just pick a p
 ## Preview
 
 ![Clocked Screenshot](media/preview1.png)
-![Clocked Screenshot](media/Preview2.png)
+<img
+  src="media/Preview2.png"
+  alt="Clocked Screenshot"
+  style="margin-top: -100px;"
+/>
 
 ## What it does
 
