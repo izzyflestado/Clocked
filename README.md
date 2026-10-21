@@ -15,6 +15,10 @@ No accounts. No streaks. No notifications. No "productivity tips." Just pick a p
 ![Clocked Screenshot](media/Screenshot1.png)
 ![Clocked Screenshot](media/Screenshot2.png)
 
+## Download
+
+Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/download/V1.0.0/Clocked.dmg) from the [Releases page](https://github.com/izzyflestado/Clocked/releases).
+
 ## What it does
 
 - Lives in your menu bar. Click it, get a popover.
