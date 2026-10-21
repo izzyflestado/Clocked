@@ -4,6 +4,10 @@ A tiny macOS menu bar app that tracks how much time you spend on different proje
 
 No accounts. No streaks. No notifications. No "productivity tips." Just pick a project, hit start, and it counts.
 
+## Preview
+
+![Clocked Screenshot](Media/preview1.png)
+
 ## What it does
 
 - Lives in your menu bar. Click it, get a popover.
