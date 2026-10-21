@@ -1,4 +1,10 @@
-# Clocked - Project Time Tracker
+#<p align="center">
+  <img src="logo.png" alt="Multimail_logo" width="100">
+</p>
+
+<h1 align="center">Clocked</h1>
+
+<br>
 
 A tiny macOS menu bar app that tracks how much time you spend on different projects. 
 
