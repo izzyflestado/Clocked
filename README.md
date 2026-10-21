@@ -6,8 +6,8 @@ No accounts. No streaks. No notifications. No "productivity tips." Just pick a p
 
 ## Preview
 
-![Clocked Screenshot](media/preview1.png)
-![Clocked Screenshot](media/Preview2.png)
+![Clocked Screenshot](media/Screenshot1.png)
+![Clocked Screenshot](media/Screenshot2.png)
 
 ## What it does
 
