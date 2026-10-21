@@ -8,7 +8,7 @@ No accounts. No streaks. No notifications. No "productivity tips." Just pick a p
 
 ![Clocked Screenshot](media/preview1.png)
 <p align="center">
-  <img src="media/preview2new.png" alt="Clocked Screenshot" width="75%">
+  <img src="media/Preview2.png" alt="Clocked Screenshot" width="75%">
 </p>
 
 ## What it does
