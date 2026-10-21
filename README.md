@@ -24,7 +24,7 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
 - Lives in your menu bar. Click it, get a popover.
 - **Timer tab** — pick/create/rename/delete projects, big readout, Start/Pause/Stop.
 - **Stats tab** — pie chart + list of totals per project, each with its own customizeable color.
-- Menu bar icon shows the live time while a timer's running. Nothing shows when it's paused or stopped.
+- Menu bar icon shows the live time while a timer's running. Logo shows when it's paused or stopped.
 - Two colors you can customize: background and text. Quit app. That's the entire settings screen.
 
 ## Stack
