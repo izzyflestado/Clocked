@@ -29,9 +29,13 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
   - Customize background and text color.
   - Quit app.
 
-## Stack
+## Roadmap
 
-SwiftUI, SwiftData, Swift Charts.
+1. [ ] Add feature: Automatic app detection
+2. [ ] Automatic start a timer on project
+3. [ ] Add github like contrib graph
+4. [ ] Add restore to default button on settings
+5. [ ] Add dedicated settings
 
 ## Running it
 
