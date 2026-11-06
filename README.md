@@ -36,6 +36,7 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
 3. [ ] Add github like contrib graph
 4. [ ] Add restore to default button on settings
 5. [ ] Add dedicated settings
+6. [ ] Add shortcut keybind
 
 ## Running it
 
