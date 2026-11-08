@@ -37,6 +37,7 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
 4. [ ] Add restore to default button on settings
 5. [ ] Add dedicated settings
 6. [ ] Add shortcut keybind
+7. [ ] Add blocking for active apps/websites to pause time (automatically unpause when not active)
 
 ## Running it
 
