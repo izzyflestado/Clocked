@@ -30,14 +30,17 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
   - Quit app.
 
 ## Roadmap
-
-1. [ ] Add feature: Automatic app detection
-2. [ ] Automatic start a timer on project
-3. [ ] Add github like contrib graph
-4. [ ] Add restore to default button on settings
-5. [ ] Add dedicated settings
-6. [ ] Add shortcut keybind
-7. [ ] Add blocking for active apps/websites to pause time (automatically unpause when not active)
+ 
+1. [ ] Add menu bar popup for automatic start to select project
+2. [ ] Add feature: Automatic project detection
+3. [ ] Scan folders for git projects
+4. [ ] Automatic start a timer on project
+5. [ ] Add to do list 
+6. [ ] Add github like contrib graph (done to dos and total time that day)
+7. [ ] Add restore to default button on settings
+8. [ ] Add dedicated settings
+9. [ ] Add shortcut keybind
+10. [ ] Add blocking for active apps/websites to pause time or automatically unpause when not active)
 
 ## Running it
 
