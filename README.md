@@ -35,11 +35,12 @@ Grab the latest [Clocked.dmg](https://github.com/izzyflestado/Clocked/releases/d
 2. [ ] Add feature: Automatic project detection
 3. [ ] Scan folders for git projects
 4. [ ] Automatic start a timer on project
-5. [ ] Add github like contrib graph
-6. [ ] Add restore to default button on settings
-7. [ ] Add dedicated settings
-8. [ ] Add shortcut keybind
-9. [ ] Add blocking for active apps/websites to pause time or automatically unpause when not active)
+5. [ ] Add to do list 
+6. [ ] Add github like contrib graph (done to dos and total time that day)
+7. [ ] Add restore to default button on settings
+8. [ ] Add dedicated settings
+9. [ ] Add shortcut keybind
+10. [ ] Add blocking for active apps/websites to pause time or automatically unpause when not active)
 
 ## Running it
 
